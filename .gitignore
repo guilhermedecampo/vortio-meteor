@@ -1,2 +1,3 @@
 packages
+!.meteor/packages
 smart.lock
