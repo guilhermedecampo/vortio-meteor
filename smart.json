@@ -1,0 +1,16 @@
+{
+  "packages": {
+    "iron-router": {},
+    "collection2": {},
+    "handlebar-helpers": {},
+    "fast-render": {},
+    "collection-hooks": {},
+    "roles": {},
+    "moment-with-langs": {},
+    "robots-txt": {},
+    "sitemaps": {},
+    "bootstrap-3": {},
+    "iron-router-active": {},
+    "moment": {}
+  }
+}

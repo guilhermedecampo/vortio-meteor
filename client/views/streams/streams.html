@@ -1,0 +1,41 @@
+<template name="Streams">
+  	<h2 class="sub-header">Streams</h2>
+  	<div class="row">
+  <div class="col-xs-2 pull-right">
+  	<select id="keywordPick" class="form-control">
+		{{#each keywords}}
+			  <option value="{{term}}">{{term}}</option>
+		{{/each}}
+	</select>
+
+  	</div>
+  	  	<button id="reloadStreams" type="button" class="btn btn-default btn-sm pull-right">
+  		<span class="glyphicon glyphicon-refresh"></span> Reload
+  	</button>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Name</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Language</th>
+				<th>Mentions</th>
+			</tr>
+		</thead>
+		<tbody>
+		{{#each streams}}
+			<tr>
+				<td>{{id}}</td>
+				<td>{{name}}</td>
+				<td>{{prettifyDate first_date}}</td>
+				<td>{{prettifyDate last_date}}</td>
+				<td>{{language}}</td>
+				<td>{{count}}</td>
+				<td><span id="{{id}}" class="button-graph glyphicon glyphicon-eye-open"></span></td>
+			</tr>
+		{{/each}}
+		</tbody>
+	</table>
+	</div>
+</template>
