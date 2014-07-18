@@ -12,10 +12,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+            {{> loginButtons }}
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -28,9 +25,14 @@
 <template name="Sidebar">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="{{ isActiveRoute 'dashboard' }}"><a href="{{pathFor 'dashboard'}}">Overview</a></li>
-            <li class="{{ isActiveRoute 'keywords' }}"><a href="{{pathFor 'keywords'}}">Keywords</a></li>
-            <li class="{{ isActiveRoute 'streams' }}"><a href="{{pathFor 'streams'}}">Streams</a></li>
+            {{#if isInRole 'admin'}}
+              <li class="{{ isActiveRoute 'admin' }}"><a href="{{pathFor 'admin'}}">Admin</a></li>
+            {{/if}}
+            {{#if isInRole 'admin, user'}}
+              <li class="{{ isActiveRoute 'dashboard' }}"><a href="{{pathFor 'dashboard'}}">Overview</a></li>
+              <li class="{{ isActiveRoute 'keywords' }}"><a href="{{pathFor 'keywords'}}">Keywords</a></li>
+              <li class="{{ isActiveRoute 'streams' }}"><a href="{{pathFor 'streams'}}">Streams</a></li>
+            {{/if}}
           </ul>
         </div>
 </template>

@@ -1,6 +1,6 @@
 StreamsController = RouteController.extend({
   waitOn: function () {
-  	  	Meteor.subscribe("Keywords");
+  	  	Meteor.subscribe("Keywords", Meteor.user());
   	  	Meteor.subscribe("Streams");
   },
 

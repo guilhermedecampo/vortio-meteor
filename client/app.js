@@ -7,7 +7,7 @@ _.extend(App, {
 App.helpers = {
 	prettifyDate: function(date){
 		var newDate = moment(date);
-		return newDate.format("dddd, MMMM Do YYYY, h:mm:ss a");;
+		return newDate.format("dddd, MMMM Do YYYY, h:mm a");;
 	}
 };
 

@@ -1,7 +1,7 @@
 Meteor.methods({
   getKeywords: function () {
-  Keywords.remove({});
-  HTTP.get("http://login.vortio.com:3000/keywords",
+    Keywords.remove({});
+    HTTP.get("http://login.vortio.com:3000/keywords",
       function (error, result) {
         if (!error) {
           result.data.forEach( function(Keyword){
@@ -10,7 +10,7 @@ Meteor.methods({
         }else{
           console.error(error);
         }
-  });
+      });
     return;
   },
   getStreamsByKeyword: function(keyword) {
@@ -23,4 +23,17 @@ Meteor.methods({
       });
     return;
   },
+  createUsers: function(data) {
+    id = Accounts.createUser({
+      email: data.email,
+      password: data.password,
+      profile: { 
+        name: data.name,
+        lastname: data.lastname,
+        keywords: data.keywords 
+      }
+    }); 
+    AuthManager.addUsersToRoles(id, [data.roles]);
+    return;
+  }
 });

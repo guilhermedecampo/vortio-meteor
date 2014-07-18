@@ -1,7 +1,6 @@
 {
   "packages": {
     "iron-router": {},
-    "collection2": {},
     "handlebar-helpers": {},
     "fast-render": {},
     "collection-hooks": {},
@@ -11,6 +10,10 @@
     "sitemaps": {},
     "bootstrap-3": {},
     "iron-router-active": {},
-    "moment": {}
+    "moment": {},
+    "accounts-ui-bootstrap-3": {},
+    "authorization": {},
+    "iron-router-auth": {},
+    "event-hooks": {}
   }
 }

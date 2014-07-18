@@ -9,6 +9,7 @@ Template.Streams.events({
     Meteor.call('getStreamsByKeyword', Session.get('keywordPick'));
   },
   'click .button-graph': function(e) {
+    Session.set('graphStreamType', 'stream');
     Session.set('graphStreamId', e.target.id);
     Router.go('graph');
   }
@@ -42,6 +43,8 @@ Template.Streams.created = function () {
 };
 
 Template.Streams.rendered = function () {
+  $("#keywordPick")[0].selectedIndex = 0;
+  Session.set('keywordPick', $("#keywordPick").val());
 };
 
 Template.Streams.destroyed = function () {

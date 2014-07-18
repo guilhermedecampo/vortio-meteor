@@ -15,8 +15,10 @@ Router.configure({
 });
 
 Router.map(function () {
-  this.route('dashboard', {path: '/'});
-  this.route('keywords', {path: '/keywords'});
-  this.route('streams', {path: '/streams'});
-  this.route('graph', {path: '/graph'});
+  this.route('home', {path: '/'});
+  this.route('dashboard', {path: '/dashboard', loginRequired: 'home'});
+  this.route('keywords', {path: '/keywords', loginRequired: 'home'});
+  this.route('streams', {path: '/streams', loginRequired: 'home'});
+  this.route('graph', {path: '/graph', loginRequired: 'home'});
+  this.route('admin', {path: '/admin', loginRequired: 'home'});
 });

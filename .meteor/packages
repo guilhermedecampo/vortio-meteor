@@ -6,7 +6,6 @@
 standard-app-packages
 accounts-base
 iron-router
-collection2
 handlebar-helpers
 fast-render
 collection-hooks
@@ -19,3 +18,8 @@ jquery
 http
 iron-router-active
 moment
+accounts-password
+accounts-ui-bootstrap-3
+authorization
+iron-router-auth
+event-hooks

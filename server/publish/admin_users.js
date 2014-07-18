@@ -1,4 +1,7 @@
 /*****************************************************************************/
-/* App: The Global Application Namespace */
+/* AdminUsers Publish Functions
 /*****************************************************************************/
-App = {};
+
+Meteor.publish('admin_users', function () {
+	return Meteor.users.find({});
+});
