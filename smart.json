@@ -11,9 +11,11 @@
     "bootstrap-3": {},
     "iron-router-active": {},
     "moment": {},
-    "accounts-ui-bootstrap-3": {},
     "authorization": {},
     "iron-router-auth": {},
-    "event-hooks": {}
+    "event-hooks": {},
+    "kadira": {},
+    "accounts-ui-bootstrap-3": {},
+    "font-awesome": {}
   }
 }

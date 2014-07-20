@@ -19,7 +19,9 @@ http
 iron-router-active
 moment
 accounts-password
-accounts-ui-bootstrap-3
 authorization
 iron-router-auth
 event-hooks
+kadira
+accounts-ui-bootstrap-3
+font-awesome

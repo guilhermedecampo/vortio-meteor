@@ -3,5 +3,5 @@
 /*****************************************************************************/
 
 Meteor.publish('Streams', function () {
-	return Streams.find({});
+	return Streams.find({count: {$gt: 0}});
 });

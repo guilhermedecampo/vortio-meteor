@@ -10,6 +10,13 @@ body {
   padding-top: 50px;
 }
 
+.glyphicon.smaller {
+  font-size: 8px;
+}
+
+.glyphicon.bigger {
+  font-size: 30px;
+}
 
 /*
  * Global add-ons
