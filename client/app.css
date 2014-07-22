@@ -10,6 +10,10 @@ body {
   padding-top: 50px;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 .glyphicon.smaller {
   font-size: 8px;
 }

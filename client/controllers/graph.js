@@ -4,7 +4,9 @@ GraphController = RouteController.extend({
   },
 
   data: function () {
-  	return Streams.findOne(this.params._id);
+  	currentStream = Streams.findOne(this.params._id);
+  	Session.set('currentStream', currentStream);
+  	return currentStream;
   },
 
   action: function () {

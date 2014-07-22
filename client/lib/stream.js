@@ -1,8 +1,15 @@
+getStreamData = function(options, callback) {
+  HTTP.get('http://login.vortio.com:3000/streamgraph/stream/' + options.stream + '/' + options.period, 
+    function (error, result){
+      callback(result.data);
+    });
+}
+
 drawStream = function(data, period) {
-	  for (var i=0; i < data.length; i++) {
-    for (var j=0; j < data[i].values.length; j++) {
-      v = data[i].values[j][0];
-      var dts = v.split("-");
+ for (var i=0; i < data.length; i++) {
+  for (var j=0; j < data[i].values.length; j++) {
+    v = data[i].values[j][0];
+    var dts = v.split("-");
                     //FIX difference between hour and date
                     data[i].values[j][0] = 
                     new Date(parseInt(dts[0], 10), parseInt(dts[1], 10)-1, 
@@ -22,8 +29,8 @@ drawStream = function(data, period) {
                 var m = [60, 20, 30, 20];
 
                 var container = $("#graph_div"),
-                  width = container.width(),
-                  height = 0;
+                width = container.width(),
+                height = 0;
 
                 var svg = d3.select("#graph_div").append("svg:svg")
                 .attr("width", '100%')
@@ -78,89 +85,89 @@ drawStream = function(data, period) {
                    return "translate(0," + (i * height / n + 10) + ")"; 
                  }
 
-var g = svg.selectAll(".symbol")
-.attr("transform", transform);
+                 var g = svg.selectAll(".symbol")
+                 .attr("transform", transform);
 
-horizons()
+                 horizons()
 
-function horizons() {
-  svg.insert("svg:defs", ".symbol")
-  .append("svg:clipPath")
-  .attr("id", "clip")
-  .append("svg:rect")
-  .attr("width", width)
-  .attr("height", height / n - 20);
+                 function horizons() {
+                  svg.insert("svg:defs", ".symbol")
+                  .append("svg:clipPath")
+                  .attr("id", "clip")
+                  .append("svg:rect")
+                  .attr("width", width)
+                  .attr("height", height / n - 20);
 
-  var color = d3.scale.ordinal()
-  .range(["#c6dbef", "#9ecae1", "#6baed6"]);
+                  var color = d3.scale.ordinal()
+                  .range(["#c6dbef", "#9ecae1", "#6baed6"]);
 
-  var g = svg.selectAll(".symbol")
-  .attr("clip-path", "url(#clip)");
+                  var g = svg.selectAll(".symbol")
+                  .attr("clip-path", "url(#clip)");
 
-  area.y0(height / n - 20);
-            
-            g.each(function(d) {
-              y.domain([0, d.max]);
+                  area.y0(height / n - 20);
 
-              d3.select(this).selectAll(".area")
-              .data(d3.range(3))
-              .enter().insert("svg:path", ".line")
-              .attr("class", "area")
-              .attr("transform", function(d) { 
-                return "translate(0," + (d * (height / n - 20)) + ")"; })
-              .attr("d", area(d.values))
-              .style("fill", function(d, i) { return color(i); })
-              .style("fill-opacity", 1e-6);
+                  g.each(function(d) {
+                    y.domain([0, d.max]);
 
-              y.domain([0, d.max / 3]);
+                    d3.select(this).selectAll(".area")
+                    .data(d3.range(3))
+                    .enter().insert("svg:path", ".line")
+                    .attr("class", "area")
+                    .attr("transform", function(d) { 
+                      return "translate(0," + (d * (height / n - 20)) + ")"; })
+                    .attr("d", area(d.values))
+                    .style("fill", function(d, i) { return color(i); })
+                    .style("fill-opacity", 1e-6);
 
-              d3.select(this).selectAll(".line")
-              .attr("d", line(d.values))
-              .style("stroke-opacity", 1e-6);
+                    y.domain([0, d.max / 3]);
 
-              d3.select(this).selectAll(".area")
-              .style("fill-opacity", null)
-              .attr("d", area(d.values))
-            });
-            
-            areas();
-          }
+                    d3.select(this).selectAll(".line")
+                    .attr("d", line(d.values))
+                    .style("stroke-opacity", 1e-6);
 
-          function areas() {
-            var g = svg.selectAll(".symbol");
-            axis.y(height/ n - 21);
+                    d3.select(this).selectAll(".area")
+                    .style("fill-opacity", null)
+                    .attr("d", area(d.values))
+                  });
 
-            g.select(".line")
-            .attr("d", function(d) { return axis(d.values); });
+                  areas();
+                }
 
-            g.each(function(d, ii) {
-              y.domain([0, d.max]);
+                function areas() {
+                  var g = svg.selectAll(".symbol");
+                  axis.y(height/ n - 21);
 
-              d3.select(this).select(".line").transition()
-              .duration(duration)
-              .style("stroke-opacity", 1)
-              .each("end", function() { 
-                d3.select(this).style("stroke-opacity", null);
-              });
-              d3.select(this).selectAll(".area")
-              .filter(function(d, i) { return i; })
-              .transition()
-              .duration(duration)
-              .style("fill-opacity", 1e-6)
-              .attr("d", area(d.values))
-              .remove();
+                  g.select(".line")
+                  .attr("d", function(d) { return axis(d.values); });
 
-              d3.select(this).selectAll(".area")
-              .filter(function(d, i) { return !i; })
-              .transition()
-              .duration(duration)
-              .style("fill", function(d, i) { return color(ii) })
-              .attr("onmouseover", 
-                "evt.target.setAttribute('opacity', '0.8');")
-              .attr("onmouseout", 
-                "evt.target.setAttribute('opacity', '1');")
-              .attr("d", area(d.values));
-            });
+                  g.each(function(d, ii) {
+                    y.domain([0, d.max]);
+
+                    d3.select(this).select(".line").transition()
+                    .duration(duration)
+                    .style("stroke-opacity", 1)
+                    .each("end", function() { 
+                      d3.select(this).style("stroke-opacity", null);
+                    });
+                    d3.select(this).selectAll(".area")
+                    .filter(function(d, i) { return i; })
+                    .transition()
+                    .duration(duration)
+                    .style("fill-opacity", 1e-6)
+                    .attr("d", area(d.values))
+                    .remove();
+
+                    d3.select(this).selectAll(".area")
+                    .filter(function(d, i) { return !i; })
+                    .transition()
+                    .duration(duration)
+                    .style("fill", function(d, i) { return color(ii) })
+                    .attr("onmouseover", 
+                      "evt.target.setAttribute('opacity', '0.8');")
+                    .attr("onmouseout", 
+                      "evt.target.setAttribute('opacity', '1');")
+                    .attr("d", area(d.values));
+                  });
 
 
 
@@ -302,4 +309,4 @@ d3.select(document).selectAll(".domain").attr("class", "line line1");
       }
 
       setTimeout(lines, duration);
-}
+    }
