@@ -26,7 +26,6 @@
               <li class="{{ isActiveRoute 'admin' }}"><a href="{{pathFor 'admin'}}">Admin</a></li>
             {{/if}}
             {{#if isInRole 'admin, user'}}
-              <li class="{{ isActiveRoute 'dashboard' }}"><a href="{{pathFor 'dashboard'}}">Overview</a></li>
               <li class="{{ isActiveRoute 'keywords' }}"><a href="{{pathFor 'keywords'}}">Keywords</a></li>
               <li class="{{ isActiveRoute 'streams' }}"><a href="{{pathFor 'streams'}}">Streams</a></li>
             {{/if}}
