@@ -1,3 +1,17 @@
 <template name="Graph">
-  <iframe  id="iframeGraph" frameborder="0" height="500px" scrolling="no" width="900px" src="{{graphSource}}"></iframe>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="page-header">
+				<h1>
+					{{query}} <small> {{prettifyDate first_date}} to {{prettifyDate last_date}}</small>
+				</h1>
+			</div>
+			<div class="col-md-8 column">
+				 <iframe  id="iframeGraph" frameborder="0" height="500px" scrolling="no" width="900px" src="http://login.vortio.com:3000/streamgraph/stream/{{id}}/hour"></iframe>
+			</div>
+			<div class="col-md-4 column">
+				Controllers
+			</div>
+		</div>
+	</div>
 </template>

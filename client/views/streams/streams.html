@@ -32,7 +32,11 @@
 				<td>{{prettifyDate last_date}}</td>
 				<td>{{language}}</td>
 				<td>{{count}}</td>
-				<td><span id="{{id}}" class="button-graph glyphicon glyphicon-eye-open"></span></td>
+				<td>	
+					<a href="{{pathFor 'graph' '_id'}}">
+						<span class="button-graph glyphicon glyphicon-eye-open"></span>
+					</a>
+				</td>
 			</tr>
 		{{/each}}
 		</tbody>

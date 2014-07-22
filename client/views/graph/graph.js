@@ -11,14 +11,6 @@ Template.Graph.events({
 });
 
 Template.Graph.helpers({
-  graphSource: function() {
-    idValue = Session.get('graphStreamId');
-    if (Session.equals('graphStreamType', 'keyword')){
-      return 'http://login.vortio.com:3000/streamgraph/keyword/' + idValue;
-    }else{
-      return 'http://login.vortio.com:3000/streamgraph/stream/' + idValue + '/hour';
-    }
-  }
   /*
    * Example: 
    *  items: function () {

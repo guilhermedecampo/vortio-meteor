@@ -7,11 +7,6 @@ Template.Streams.events({
   },
   'click #reloadStreams': function() {
     Meteor.call('getStreamsByKeyword', Session.get('keywordPick'));
-  },
-  'click .button-graph': function(e) {
-    Session.set('graphStreamType', 'stream');
-    Session.set('graphStreamId', e.target.id);
-    Router.go('graph');
   }
   /*
    * Example: 
