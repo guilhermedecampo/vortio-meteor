@@ -2,12 +2,13 @@
 /* Graph: Event Handlers and Helpers */
 /*****************************************************************************/
 Template.Graph.events({
-  /*
-   * Example: 
-   *  'click .selector': function (e, tmpl) {
-   *
-   *  }
-   */
+  'click .btn-change-period': function(e, t){
+    options = {
+      period: e.target.value,
+      stream: Session.get('currentStream').id
+    }
+    generateStream(options);
+  }
  });
 
 Template.Graph.helpers({
@@ -36,9 +37,7 @@ Template.Graph.rendered = function () {
     stream: Session.get('currentStream').id
   };
 
-  data = getStreamData(options, function(reponse){
-    drawStream(reponse, options.period);
-  });
+  generateStream(options);
 };
 
 Template.Graph.destroyed = function () {

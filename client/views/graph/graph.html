@@ -5,10 +5,7 @@
 				{{> streamGraph}}
 			</div>
 			<div class="col-md-4 column">
-				<h4 class="capitalize">{{query}} <small>	({{language}})</small></h4>
-				<h5 class="text-info capitalize">{{prettifyDate first_date}}</h5>
-				<h5 class="text-info capitalize">{{prettifyDate last_date}}</h5>
-				<span id="test">Lorem Ipsum</span>
+				{{> graphSidebar}}
 			</div>
 		</div>
 	</div>
@@ -16,5 +13,16 @@
 
 <template name="streamGraph">
 	<div id="graph_div" class="streamGraph">
+	</div>
+</template>
+
+<template name="graphSidebar">
+	<h4 class="capitalize">{{query}} <small>	({{language}})</small></h4>
+	<h5 class="text-info capitalize">{{prettifyDate first_date}}</h5>
+	<h5 class="text-info capitalize">{{prettifyDate last_date}}</h5>
+	<p class="capitalize" id="test">Lorem Ipsum</p>
+	<div class="btn-group">
+		<button type="button" value="hour" class="btn btn-change-period btn-default">Hours</button>
+		<button type="button" value="day" class="btn btn-change-period btn-default">Days</button>
 	</div>
 </template>

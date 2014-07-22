@@ -3,10 +3,13 @@ GraphController = RouteController.extend({
   	return Meteor.subscribe("Streams");
   },
 
+  onBeforeAction: function() {
+    currentStream = Streams.findOne(this.params._id);
+    Session.set('currentStream', currentStream);
+  },
+
   data: function () {
-  	currentStream = Streams.findOne(this.params._id);
-  	Session.set('currentStream', currentStream);
-  	return currentStream;
+  	return Streams.findOne(this.params._id);
   },
 
   action: function () {

@@ -1,3 +1,17 @@
+generateStream = function(options) {
+  $("#graph_div").html('');
+  data = getStreamData(options, function(reponse){
+
+    if (reponse.length > 0){
+      drawStream(reponse, options.period);
+    }else{
+      $("#graph_div").html('No data recived');
+    }
+ 
+  });
+}
+
+
 getStreamData = function(options, callback) {
   HTTP.get('http://login.vortio.com:3000/streamgraph/stream/' + options.stream + '/' + options.period, 
     function (error, result){
