@@ -1,6 +1,6 @@
 GraphController = RouteController.extend({
   waitOn: function () {
-  	return Meteor.subscribe("Streams");
+  	return Meteor.subscribe("Stream", this.params._id);
   },
 
   onBeforeAction: function() {
