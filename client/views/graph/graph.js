@@ -21,18 +21,22 @@ Template.Graph.created = function () {
 };
 
 Template.Graph.rendered = function () {
-  stream = Streams.findOne();
-  first_date = moment(stream.first_date);
-  last_date = moment(stream.last_date);
+  Deps.autorun(function () {
+    stream = Streams.findOne();
+    if (stream) {
+      first_date = moment(stream.first_date);
+      last_date = moment(stream.last_date);
 
-  days = last_date.dayOfYear() - first_date.dayOfYear();
+      days = last_date.dayOfYear() - first_date.dayOfYear();
 
-  options = {
-    period: (days > 2) ? 'day' : 'hour',
-    stream: stream.id
-  };
+      options = {
+        period: (days > 2) ? 'day' : 'hour',
+        stream: stream.id
+      };
 
-  generateStream(options);
+      generateStream(options);
+    }
+  });
 };
 
 Template.graphSidebar.rendered = function () {
