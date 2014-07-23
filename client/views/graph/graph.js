@@ -9,16 +9,10 @@ Template.Graph.events({
     }
     generateStream(options);
   }
- });
+});
 
 Template.Graph.helpers({
-  /*
-   * Example: 
-   *  items: function () {
-   *    return Items.find();
-   *  }
-   */
- });
+});
 
 /*****************************************************************************/
 /* Graph: Lifecycle Hooks */
@@ -27,17 +21,29 @@ Template.Graph.created = function () {
 };
 
 Template.Graph.rendered = function () {
-  first_date = moment(Session.get('currentStream').first_date);
-  last_date = moment(Session.get('currentStream').last_date);
+  stream = Streams.findOne();
+  first_date = moment(stream.first_date);
+  last_date = moment(stream.last_date);
 
   days = last_date.dayOfYear() - first_date.dayOfYear();
 
   options = {
     period: (days > 2) ? 'day' : 'hour',
-    stream: Session.get('currentStream').id
+    stream: stream.id
   };
 
   generateStream(options);
+};
+
+Template.graphSidebar.rendered = function () {
+  $('#datepicker').datepicker({
+    startDate: "07/14/2014",
+    endDate: "07/30/2014",
+    todayBtn: "linked",
+    multidate: false,
+    autoclose: true,
+    todayHighlight: true
+  });
 };
 
 Template.Graph.destroyed = function () {

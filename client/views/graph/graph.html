@@ -2,17 +2,13 @@
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<div class="col-md-8 column">
-				{{> streamGraph}}
+				<div id="graph_div" class="streamGraph">
+				</div>
 			</div>
 			<div class="col-md-4 column">
 				{{> graphSidebar}}
 			</div>
 		</div>
-	</div>
-</template>
-
-<template name="streamGraph">
-	<div id="graph_div" class="streamGraph">
 	</div>
 </template>
 
@@ -24,5 +20,10 @@
 	<div class="btn-group">
 		<button type="button" value="hour" class="btn btn-change-period btn-default">Hours</button>
 		<button type="button" value="day" class="btn btn-change-period btn-default">Days</button>
+	</div>
+	<div class="input-daterange input-group clear-top" id="datepicker">
+		<input type="text" class="input-sm form-control" name="start" />
+		<span class="input-group-addon">to</span>
+		<input type="text" class="input-sm form-control" name="end" />
 	</div>
 </template>
